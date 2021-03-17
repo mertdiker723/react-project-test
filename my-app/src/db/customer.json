@@ -1,0 +1,72 @@
+{
+  "customer": [
+    {
+      "id": 1,
+      "Name": "Hasan",
+      "Surname": "Masan",
+      "Age": "25",
+      "CountryId": 7
+    },
+    {
+      "id": 4,
+      "Name": "Maradona",
+      "Surname": "Zaradona",
+      "Age": "34",
+      "CountryId": 5
+    },
+    {
+      "id": 5,
+      "Name": "Hakan",
+      "Surname": "kıro",
+      "Age": "70",
+      "CountryId": 4
+    },
+    {
+      "id": 6,
+      "Name": "Muhammed",
+      "Surname": "Deneme",
+      "Age": "76",
+      "CountryId": 2
+    },
+    {
+      "Name": "asdas",
+      "Surname": "tg",
+      "Age": "44",
+      "CountryId": 2,
+      "id": 7
+    },
+    {
+      "Name": "asd",
+      "Surname": "dfs",
+      "Age": "45",
+      "CountryId": 7,
+      "id": 8
+    }
+  ],
+  "country": [
+    {
+      "Name": "Brazil",
+      "id": 2
+    },
+    {
+      "Name": "Greece",
+      "id": 3
+    },
+    {
+      "Name": "Iran",
+      "id": 4
+    },
+    {
+      "Name": "Turkey",
+      "id": 5
+    },
+    {
+      "Name": "Papua New Gine",
+      "id": 7
+    },
+    {
+      "Name": "aaa",
+      "id": 8
+    }
+  ]
+}
