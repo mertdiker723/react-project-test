@@ -102,7 +102,7 @@ class CountryPage extends Component {
         const indexOfFirstPost = indexOfLastPost - postsPerPage;
         const currentPosts = filteredCountries.slice(indexOfFirstPost, indexOfLastPost);
 
-
+        //
         return (
             <div className="container">
                 <div className="text-center">
