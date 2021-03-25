@@ -106,7 +106,7 @@ class HomePage extends Component {
                                                     return (
                                                         <tr>
                                                             <th scope="row">{index + 1}</th>
-                                                            <td>{customer.CountryName}</td>
+                                                            <td>{customer.CountryName === "" ? <b>{"Ülkesiz"}</b> : customer.CountryName}</td>
                                                         </tr>
                                                     )
                                                 })

@@ -10,6 +10,7 @@ import CustomerModal from './customer-modal';
 import { toast } from 'react-toastify';
 import ButtonTag from '../../controls/Button/ButtonTag.js';
 import SearchInput from '../../controls/SearchInput/SearchInput.js';
+import Pagination from '../../controls/Pagination/Pagination.js';
 class CustomerPage extends Component {
 
     constructor(props) {
@@ -18,6 +19,8 @@ class CustomerPage extends Component {
         this.state = {
             modalShow: false,
             multiDeleteItems: [],
+            currentPage: 1,
+            postsPerPage: 5,
             customerFiltered: ""
         }
     }
@@ -76,9 +79,15 @@ class CustomerPage extends Component {
     }
 
     render() {
-        const filteredCountries = this.props.customers.filter(country => {
-            return country.Name.toLowerCase().indexOf(this.state.customerFiltered.toLowerCase()) !== -1;
+        const { currentPage, postsPerPage, customerFiltered } = this.state;
+
+        const filteredCountries = this.props.customers.filter(customer => {
+            return customer.Name.toLowerCase().indexOf(customerFiltered.toLowerCase()) !== -1;
         });
+        const indexOfLastPost = currentPage * postsPerPage;
+        const indexOfFirstPost = indexOfLastPost - postsPerPage;
+        const currentPosts = filteredCountries.slice(indexOfFirstPost, indexOfLastPost);
+
         return (
             <div className="container">
                 <div className="text-center">
@@ -108,11 +117,11 @@ class CustomerPage extends Component {
                     </thead>
                     <tbody>
                         {
-                            filteredCountries.map((customer, index) => {
+                            currentPosts.map((customer, index) => {
                                 return (
                                     <tr key={customer.id}>
                                         <th>{index + 1}</th>
-                                        <th><input type="checkbox" onChange={(e) => this.checkBoxHandler(e, customer)} id="checkCustomer" /></th>
+                                        <th><input type="checkbox" checked={this.state.multiDeleteItems.find(x => x.id === customer.id) ? true : false} onChange={(e) => this.checkBoxHandler(e, customer)} id="checkCustomer" /></th>
                                         <td>{customer.Name || '-'}</td>
                                         <td>{customer.Surname || '-'}</td>
                                         <td>{+customer.Age || '-'}</td>
@@ -127,8 +136,13 @@ class CustomerPage extends Component {
                         }
                     </tbody>
                 </table>
-
                 <hr />
+                <Pagination
+                    postsPerPage={postsPerPage}
+                    totalPosts={filteredCountries.length}
+                    paginate={(paginate) => this.setState({ currentPage: paginate })}
+                />
+                <div className="float-right">Page Number: <b>{currentPage}</b></div>
                 <button className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onClick={this.showModelHandler}>Add</button>
 
                 {this.state.multiDeleteItems.length !== 0 ? <ButtonTag
