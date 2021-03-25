@@ -11,8 +11,8 @@ import { HiCog } from "react-icons/hi";
 import _, { filter } from 'underscore'
 import ButtonTag from '../../controls/Button/ButtonTag';
 import * as customerActions from '../../actions/customer-action/customer-action';
-import { Col } from 'react-bootstrap';
 import SearchInput from '../../controls/SearchInput/SearchInput';
+import Pagination from '../../controls/Pagination/Pagination';
 class CountryPage extends Component {
 
     constructor(props) {
@@ -21,12 +21,13 @@ class CountryPage extends Component {
         this.state = {
             modalShow: false,
             multiDeleteItems: [],
+            currentPage: 1,
+            postsPerPage: 5,
             countryFiltered: ""
         }
     }
     componentDidMount() {
         this.props.actions.loadCountries();
-
         this.props.actions.loadCustomers();
     }
 
@@ -95,9 +96,15 @@ class CountryPage extends Component {
 
 
     render() {
+        const { currentPage, postsPerPage, countryFiltered } = this.state;
         const filteredCountries = this.props.countries.filter(country => {
-            return country.Name.toLowerCase().indexOf(this.state.countryFiltered.toLowerCase()) !== -1;
+            return country.Name.toLowerCase().indexOf(countryFiltered.toLowerCase()) !== -1;
         });
+        const indexOfLastPost = currentPage * postsPerPage;
+        const indexOfFirstPost = indexOfLastPost - postsPerPage;
+        const currentPosts = filteredCountries.slice(indexOfFirstPost, indexOfLastPost);
+
+
         return (
             <div className="container">
                 <div className="text-center">
@@ -126,11 +133,11 @@ class CountryPage extends Component {
                     </thead>
                     <tbody>
                         {
-                            filteredCountries.map((country, index) => {
+                            currentPosts.map((country, index) => {
                                 return (
                                     <tr key={country.id}>
                                         <th>{index + 1}</th>
-                                        <th><input type="checkbox" onChange={(e) => this.checkBoxHandler(e, country)} id="checkCountry" /></th>
+                                        <th><input type="checkbox" checked={this.state.multiDeleteItems.find(x => x.id === country.id) ? true : false} onChange={(e) => this.checkBoxHandler(e, country)} id="checkCountry" /></th>
                                         <td>{country.Name}</td>
                                         <th>
                                             <BsFillBackspaceReverseFill style={{ cursor: 'pointer' }} className={"mr-3"} onClick={() => this.deleteOneCounty(country)} title={"Delete"} />
@@ -143,7 +150,12 @@ class CountryPage extends Component {
                     </tbody>
                 </table>
                 <hr />
-
+                <Pagination
+                    postsPerPage={postsPerPage}
+                    totalPosts={filteredCountries.length}
+                    paginate={(paginate) => this.setState({ currentPage: paginate })}
+                />
+                <div className="float-right">Page Number: <b>{currentPage}</b></div>
                 <button className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onClick={this.showModelHandler}>Add</button>
                 {this.state.multiDeleteItems.length !== 0 ? <ButtonTag
                     onClick={this.deleteSelectedCountries}
