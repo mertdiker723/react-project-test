@@ -93,8 +93,7 @@ class CountryPage extends Component {
             countryFiltered: e.target.value
         })
     }
-
-
+    //
     render() {
         const { currentPage, postsPerPage, countryFiltered } = this.state;
         const filteredCountries = this.props.countries.filter(country => {
