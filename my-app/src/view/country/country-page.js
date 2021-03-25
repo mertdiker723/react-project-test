@@ -14,7 +14,6 @@ import * as customerActions from '../../actions/customer-action/customer-action'
 import SearchInput from '../../controls/SearchInput/SearchInput';
 import Pagination from '../../controls/Pagination/Pagination';
 class CountryPage extends Component {
-
     constructor(props) {
         super(props);
 
@@ -102,7 +101,6 @@ class CountryPage extends Component {
         const indexOfFirstPost = indexOfLastPost - postsPerPage;
         const currentPosts = filteredCountries.slice(indexOfFirstPost, indexOfLastPost);
 
-        //
         return (
             <div className="container">
                 <div className="text-center">
