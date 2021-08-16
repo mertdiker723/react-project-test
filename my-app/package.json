@@ -28,6 +28,7 @@
   },
   "scripts": {
     "start": "set PORT=8080 && react-scripts start",
+    "fakedb": "json-server -w .\/src\/db\/customer.json",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
