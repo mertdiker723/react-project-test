@@ -12,7 +12,6 @@ import ButtonTag from '../../controls/Button/ButtonTag.js';
 import SearchInput from '../../controls/SearchInput/SearchInput.js';
 import Pagination from '../../controls/Pagination/Pagination.js';
 class CustomerPage extends Component {
-
     constructor(props) {
         super(props);
 
@@ -27,7 +26,7 @@ class CustomerPage extends Component {
     componentDidMount() {
         this.props.actions.loadCountries();
         this.props.actions.loadCustomers();
-    }
+    }//
 
     deleteOneCustomer = (customer) => {
         toast.success("Customer deleted.", { position: toast.POSITION.BOTTOM_RIGHT });

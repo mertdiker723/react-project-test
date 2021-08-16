@@ -62,6 +62,27 @@
       "Surname": "rr",
       "Age": "75",
       "CountryId": null
+    },
+    {
+      "Name": "asd",
+      "Surname": "dds",
+      "Age": "34",
+      "CountryId": 5,
+      "id": 15
+    },
+    {
+      "Name": "aasdsa",
+      "Surname": "dfgdfg",
+      "Age": "34",
+      "CountryId": 2,
+      "id": 16
+    },
+    {
+      "Name": "aaaas",
+      "Surname": "ret",
+      "Age": "54",
+      "CountryId": 4,
+      "id": 17
     }
   ],
   "country": [
@@ -82,10 +103,6 @@
       "id": 5
     },
     {
-      "Name": "Papua New Gine",
-      "id": 7
-    },
-    {
       "Name": "aaa",
       "id": 8
     },
@@ -96,10 +113,6 @@
     {
       "Name": "rty",
       "id": 16
-    },
-    {
-      "Name": "fgh",
-      "id": 17
     },
     {
       "Name": "tret",
